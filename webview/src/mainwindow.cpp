@@ -10,7 +10,7 @@ MainWindow::MainWindow() : QMainWindow()
     QWebEngineSettings::globalSettings() -> setAttribute(QWebEngineSettings::LocalStorageEnabled, true);
 
     // for QT5.10 and higher
-    QWebEngineSettings::globalSettings() -> setAttribute(QWebEngineSettings::ShowScrollBars, false);
+    //QWebEngineSettings::globalSettings() -> setAttribute(QWebEngineSettings::ShowScrollBars, false);
 
     view = new View(this);
     setCentralWidget(view);

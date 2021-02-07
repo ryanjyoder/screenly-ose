@@ -159,4 +159,7 @@ def lookup_raspberry_pi_revision(revision):
                    'revision': '1.4'}
     }
 
-    return database.get(revision, 'Unknown Raspberry Pi version.')
+    return database.get(revision, {'manufacturer': 'Unknown',
+                   'model': 'Unknown',
+                   'ram': 'Unknown',
+                   'revision': 'Unknown'})
