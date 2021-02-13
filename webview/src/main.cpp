@@ -17,19 +17,19 @@ int main(int argc, char *argv[])
     MainWindow *window = new MainWindow();
     window -> show();
 
-    QDBusConnection connection = QDBusConnection::sessionBus();
+    QDBusConnection connection = QDBusConnection::systemBus();
 
     if (!connection.registerObject("/Screenly", window,  QDBusConnection::ExportAllSlots))
     {
         qWarning() << "Can't register object";
-        qWarning() << qPrintable(QDBusConnection::sessionBus().lastError().message());
+        qWarning() << qPrintable(QDBusConnection::systemBus().lastError().message());
         //return 1;
     }
     qDebug() << "WebView connected to D-bus";
 
     if (!connection.registerService("screenly.webview")) {
         qWarning() << "Can't register service";
-        qWarning() << qPrintable(QDBusConnection::sessionBus().lastError().message());
+        qWarning() << qPrintable(QDBusConnection::systemBus().lastError().message());
         //return 1;
     }
     qDebug() << "Screenly service start";
