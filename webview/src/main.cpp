@@ -22,11 +22,13 @@ int main(int argc, char *argv[])
     if (!connection.registerObject("/Screenly", window,  QDBusConnection::ExportAllSlots))
     {
         qWarning() << "Can't register object";
+        qWarning() << qPrintable(QDBusConnection::sessionBus().lastError().message());
         //return 1;
     }
     qDebug() << "WebView connected to D-bus";
 
     if (!connection.registerService("screenly.webview")) {
+        qWarning() << "Can't register service";
         qWarning() << qPrintable(QDBusConnection::sessionBus().lastError().message());
         //return 1;
     }
