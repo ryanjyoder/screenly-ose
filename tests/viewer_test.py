@@ -50,7 +50,7 @@ class TestEmptyPl(ViewerTestCase):
 
 
 class TestLoadBrowser(ViewerTestCase):
-    @mock.patch('pydbus.SessionBus', mock.MagicMock())
+    @mock.patch('pydbus.SystemBus', mock.MagicMock())
     def test_setup(self):
         self.p_loadb.start()
         self.u.setup()

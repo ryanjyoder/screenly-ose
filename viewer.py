@@ -254,7 +254,7 @@ def load_browser():
     global browser
     logging.info('Loading browser...')
 
-    browser = sh.Command('ScreenlyWebview')(_bg=True, _err_to_out=True)
+    browser = sh.Command('ScreenlyWebview', '--no-sandbox')(_, '--no-sandbox'bg=True, _err_to, '--no-sandbox'_out=True)
     while 'Screenly service start' not in browser.process.stdout:
         sleep(1)
 
@@ -357,12 +357,12 @@ def setup():
     db_conn = db.conn(settings['database'])
 
     load_browser()
-    bus = pydbus.SessionBus()
+    bus = pydbus.SystemBus()
     browser_bus = bus.get('screenly.webview', '/Screenly')
 
 
 def setup_hotspot():
-    bus = pydbus.SessionBus()
+    bus = pydbus.SystemBus()
 
     pattern_include = re.compile("wlan*")
     pattern_exclude = re.compile("ScreenlyOSE-*")
