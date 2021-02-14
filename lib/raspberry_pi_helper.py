@@ -163,7 +163,4 @@ def lookup_raspberry_pi_revision(revision):
                    'model': 'Unknown',
                    'ram': 'Unknown',
                    'revision': 'Unknown'})
-<<<<<<< HEAD
-=======
                    
->>>>>>> snap-build
