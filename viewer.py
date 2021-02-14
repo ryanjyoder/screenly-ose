@@ -254,7 +254,7 @@ def load_browser():
     global browser
     logging.info('Loading browser...')
 
-    browser = sh.Command('ScreenlyWebview')(_bg=True, _err_to_out=True)
+    browser = sh.Command('ScreenlyWebview')('--no-sandbox', _bg=True, _err_to_out=True)
     while 'Screenly service start' not in browser.process.stdout:
         sleep(1)
 
