@@ -357,12 +357,12 @@ def setup():
     db_conn = db.conn(settings['database'])
 
     load_browser()
-    bus = pydbus.SessionBus()
+    bus = pydbus.SystemBus()
     browser_bus = bus.get('screenly.webview', '/Screenly')
 
 
 def setup_hotspot():
-    bus = pydbus.SessionBus()
+    bus = pydbus.SystemBus()
 
     pattern_include = re.compile("wlan*")
     pattern_exclude = re.compile("ScreenlyOSE-*")

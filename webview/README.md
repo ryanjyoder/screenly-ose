@@ -41,9 +41,9 @@ Webview provides 2 methods:`loadPage` and `loadImage`.
 Example of interaction (python):
 
 ```
-from pydbus import SessionBus
+from pydbus import SystemBus
 
-bus = SessionBus()
+bus = SystemBus()
 browser_bus = bus.get('screenly.webview', '/Screenly')
 
 browser_bus.loadPage("www.example.com")
