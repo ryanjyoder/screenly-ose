@@ -5,7 +5,7 @@ import json
 import logging
 import os
 import zmq
-import ConfigParser
+import configparser as ConfigParser
 from os import path, getenv
 from time import sleep
 from UserDict import IterableUserDict
