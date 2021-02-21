@@ -47,7 +47,7 @@ r = connect_to_redis()
 
 
 try:
-    media_player = VLCMediaPlayer() if get_raspberry_model(get_raspberry_code()) == 'Model 4B' else OMXMediaPlayer()
+    media_player = VLCMediaPlayer() if get_raspberry_model(get_raspberry_code()) in ['Model 4B', 'Unknown'] else OMXMediaPlayer()
 except sh.ErrorReturnCode_1:
     media_player = OMXMediaPlayer()
 
