@@ -8,7 +8,7 @@ import zmq
 import configparser as ConfigParser
 from os import path, getenv
 from time import sleep
-from UserDict import IterableUserDict
+from collections import IterableUserDict
 
 from lib.auth import WoTTAuth, BasicAuth, NoAuth
 from lib.errors import ZmqCollectorTimeout
