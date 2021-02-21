@@ -8,7 +8,7 @@ import zmq
 import configparser as ConfigParser
 from os import path, getenv
 from time import sleep
-from collections import IterableUserDict
+from collections import UserDict
 
 from lib.auth import WoTTAuth, BasicAuth, NoAuth
 from lib.errors import ZmqCollectorTimeout
@@ -60,11 +60,11 @@ requests_log.setLevel(logging.WARNING)
 logging.debug('Starting viewer.py')
 
 
-class ScreenlySettings(IterableUserDict):
+class ScreenlySettings(UserDict):
     """Screenly OSE's Settings."""
 
     def __init__(self, *args, **kwargs):
-        IterableUserDict.__init__(self, *args, **kwargs)
+        UserDict.__init__(self, *args, **kwargs)
         self.home = getenv('HOME')
         self.conf_file = self.get_configfile()
         self.auth_backends_list = [NoAuth(), BasicAuth(self)]
@@ -93,7 +93,7 @@ class ScreenlySettings(IterableUserDict):
                 if field == 'password' and self[field] != '' and len(self[field]) != 64:   # likely not a hashed password.
                     self[field] = hashlib.sha256(self[field]).hexdigest()   # hash the original password.
         except ConfigParser.Error as e:
-            logging.debug("Could not parse setting '%s.%s': %s. Using default value: '%s'." % (section, field, unicode(e), default))
+            logging.debug("Could not parse setting '%s.%s': %s. Using default value: '%s'." % (section, field, str(e), default))
             self[field] = default
         if field in ['database', 'assetdir']:
             self[field] = str(path.join(self.home, self[field]))
@@ -102,7 +102,7 @@ class ScreenlySettings(IterableUserDict):
         if isinstance(default, bool):
             config.set(section, field, self.get(field, default) and 'on' or 'off')
         else:
-            config.set(section, field, unicode(self.get(field, default)))
+            config.set(section, field, str(self.get(field, default)))
 
     def load(self):
         """Loads the latest settings from screenly.conf into memory."""
